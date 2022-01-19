@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import CarrinhoDeCompras from './pages/CarrinhoDeCompras';
 import MainPage from './pages/MainPage';
 
 class Routes extends Component {
   render() {
     return (
-      <Route path="/" component={ MainPage } />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/carrinhodecompras" component={ CarrinhoDeCompras } />
+          <Route exact path="/" component={ MainPage } />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
