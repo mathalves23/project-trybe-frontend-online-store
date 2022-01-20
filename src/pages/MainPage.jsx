@@ -25,8 +25,7 @@ class MainPage extends Component {
 
   fetchCategories = async () => {
     try {
-      const { match: { params: { id } } } = this.props;
-      const categoriesID = await getCategories(id);
+      const categoriesID = await getCategories();
       this.setState({
         categories: categoriesID });
     } catch (error) {
@@ -122,10 +121,5 @@ class MainPage extends Component {
 export default MainPage;
 
 MainPage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
   history: PropTypes.string.isRequired,
 };
