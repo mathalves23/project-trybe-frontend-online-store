@@ -10,6 +10,7 @@ class MainPage extends Component {
       categories: [],
       products: [],
       searchProduct: '',
+      selectCategory: '',
     };
   }
 
@@ -45,8 +46,16 @@ class MainPage extends Component {
     ));
   }
 
+  selectCategory = async ({ target: { innerHTML } }) => {
+    const { categories } = this.state;
+    const selectCategory = categories.find(({ name }) => name === innerHTML).id;
+    const productsList = await getProductsFromCategoryAndQuery(selectCategory, null)
+      .then((response) => response.results);
+    this.setState({ products: productsList });
+  }
+
   render() {
-    const { categories, products, searchProduct } = this.state;
+    const { categories, products, searchProduct, selectCategory } = this.state;
     console.log(categories);
     return (
       <div>
@@ -87,7 +96,13 @@ class MainPage extends Component {
         <br />
         <div>
           {categories.map((category) => (
-            <Button key={ category.id } name={ category.name } data-testid="category" />
+            <Button
+              key={ category.id }
+              onClick={ this.selectCategory }
+              name={ category.name }
+              value={ selectCategory }
+              dataTestid="category"
+            />
           ))}
         </div>
         <div>
