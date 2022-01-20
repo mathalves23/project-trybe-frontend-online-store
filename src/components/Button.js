@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 class Button extends Component {
   render() {
-    const { label, name, dataTestid, onClick } = this.props;
+    const { label, name, dataTestid, onClick, value } = this.props;
     return (
       <label htmlFor={ dataTestid }>
         {label}
         <button
           onClick={ onClick }
           type="button"
+          value={ value }
           data-testid={ dataTestid }
         >
           {name}
@@ -26,4 +27,5 @@ Button.propTypes = {
   name: PropTypes.string.isRequired,
   onClick: PropTypes.string.isRequired,
   dataTestid: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 };
